@@ -19,6 +19,7 @@ using test_ren.Repositories.Interfaces;
 using test_ren.Services.Implimentations;
 using test_ren.Services.Interface;
 
+
 namespace test_ren
 {
     public class Startup
@@ -36,9 +37,9 @@ namespace test_ren
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddMvc();
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
-            // services.AddTransient<IRepairService, RepairService>();
+            services.AddTransient<IRepairService, RepairService>();
             services.AddTransient<IBaseRepository<Office>, BaseRepository<Office>>();
-            services.AddTransient<IBaseRepository<TimeSlot>, BaseRepository<TimeSlot>>();
+            services.AddTransient<IBaseRepository<TimeSlot>, BaseRepository<TimeSlot>>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +55,6 @@ namespace test_ren
             }
 
             app.UseHttpsRedirection();
-
             app.UseMvc();
         }
     }

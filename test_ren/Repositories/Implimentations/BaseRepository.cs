@@ -20,7 +20,7 @@ namespace test_ren.Repositories.Implimentations
         public List<TDbModel> GetAll() {
             return Context.Set<TDbModel>().ToList();
         }
-        public TDbModel Get(Guid id) {
+        public TDbModel Get(int id) {
             return Context.Set<TDbModel>().FirstOrDefault(m => m.Id == id);
         }
         public TDbModel Create(TDbModel model) {
@@ -37,7 +37,7 @@ namespace test_ren.Repositories.Implimentations
             Context.SaveChanges();
             return toUpdate;
         }
-        public void Delete(Guid id) {
+        public void Delete(int id) {
             var toDelete = Context.Set<TDbModel>().FirstOrDefault(m => m.Id == id);
             Context.Set<TDbModel>().Remove(toDelete);
             Context.SaveChanges();

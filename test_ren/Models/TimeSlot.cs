@@ -9,9 +9,9 @@ namespace test_ren.Models
     public class TimeSlot: BaseModel
     {
         public DateTime BeginTime { get; set; }
-        public DateTime EngTime { get; set; }
-        public DateTime Date { get; set; }
-        public Boolean IsBusy { get; set; }
-        public Guid OfficeId { get; set; }
+        public DateTime EndTime { get; set; }
+        public int OfficeId { get; set; }
+        public int IsBusy { get; set; }
+
     }
 }

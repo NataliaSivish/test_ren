@@ -7,6 +7,6 @@ namespace test_ren.Models.Base
 {
     public abstract class BaseModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

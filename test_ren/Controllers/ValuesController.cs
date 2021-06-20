@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using test_ren.Database;
+using test_ren.Models;
 
 namespace test_ren.Controllers
 {
