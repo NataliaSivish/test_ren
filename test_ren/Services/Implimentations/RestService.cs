@@ -9,7 +9,7 @@ using test_ren.Services.Interface;
 
 namespace test_ren.Services.Implimentations
 {
-    public class RepairService: IRepairService
+    public class RestService: IRestService
     {
         private IBaseRepository<Office> Offices { get; set; }
         private IBaseRepository<TimeSlot> TimeSlots { get; set; }

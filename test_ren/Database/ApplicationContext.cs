@@ -12,10 +12,6 @@ namespace test_ren.Database
         public DbSet<Office> Offices { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
 
-        public ApplicationContext()
-        {
-        }
-
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {
             Database.EnsureCreated();
         }

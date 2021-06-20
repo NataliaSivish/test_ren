@@ -17,12 +17,12 @@ namespace test_ren.Controllers
     {
         private IBaseRepository<TimeSlot> TimeSlots { get; set; }
         private IBaseRepository<Office> Offices { get; set; }
-        private IRepairService RepairService { get; set; }
+        private IRestService RestService { get; set; }
 
 
-        public MainController(IRepairService repairService, IBaseRepository<TimeSlot> _timeSlots, IBaseRepository<Office> _offices)
+        public MainController(IRestService repairService, IBaseRepository<TimeSlot> _timeSlots, IBaseRepository<Office> _offices)
         {
-            RepairService = repairService;
+            RestService = repairService;
             Offices = _offices;
             TimeSlots = _timeSlots;
         }

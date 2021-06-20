@@ -37,7 +37,7 @@ namespace test_ren
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddMvc();
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
-            services.AddTransient<IRepairService, RepairService>();
+            services.AddTransient<IRestService, RestService>();
             services.AddTransient<IBaseRepository<Office>, BaseRepository<Office>>();
             services.AddTransient<IBaseRepository<TimeSlot>, BaseRepository<TimeSlot>>(); 
         }

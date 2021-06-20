@@ -7,7 +7,7 @@ using test_ren.Models;
 
 namespace test_ren.Services.Interface
 {
-    public interface IRepairService
+    public interface IRestService
     {
         void CreateTimeSlot();
         void CreateSlots();
