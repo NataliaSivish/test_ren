@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using test_ren.Database;
 using test_ren.Models;
 using test_ren.Repositories;
 
@@ -11,6 +12,11 @@ namespace test_ren.Services
     {
         private TimeSlotRepository slotRepository;
         private OfficeRepository officeRepository;
+
+        public TimeSlotService() {
+            slotRepository = new TimeSlotRepository(new ApplicationContext());
+            officeRepository = new OfficeRepository(new ApplicationContext());
+    }
 
         public void CreateSlots()  // Единождое создание слотов, на 10 для всех офисов
         {
@@ -63,7 +69,6 @@ namespace test_ren.Services
 
         private void CreateTimeSlotForOffice(Office _office, int addDays)
         {
-            var timeSlotId = slotRepository.GetAll().Count + 1;
             var date = DateTime.Now.AddDays(addDays);
             var countTimeSlot = (_office.EndTime - _office.BeginTime).Minutes / 30;
             var _beginTime = new DateTime(date.Year, date.Month, date.Day,
@@ -73,7 +78,6 @@ namespace test_ren.Services
             {
                 slotRepository.Create(new TimeSlot
                 {
-                    Id = timeSlotId,
                     BeginTime = _beginTime,
                     EndTime = _endTime,
                     OfficeId = _office.Id,

@@ -5,11 +5,6 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test_ren", "test_ren\test_ren.csproj", "{106C0778-0A15-4DF3-BDD9-6173C1C7E3F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestRestService", "UnitTestRestService\UnitTestRestService.csproj", "{3EAD1074-3037-45A7-849A-8CFAB9DD70A8}"
-	ProjectSection(ProjectDependencies) = postProject
-		{106C0778-0A15-4DF3-BDD9-6173C1C7E3F9} = {106C0778-0A15-4DF3-BDD9-6173C1C7E3F9}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,10 +15,6 @@ Global
 		{106C0778-0A15-4DF3-BDD9-6173C1C7E3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{106C0778-0A15-4DF3-BDD9-6173C1C7E3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{106C0778-0A15-4DF3-BDD9-6173C1C7E3F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3EAD1074-3037-45A7-849A-8CFAB9DD70A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EAD1074-3037-45A7-849A-8CFAB9DD70A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EAD1074-3037-45A7-849A-8CFAB9DD70A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EAD1074-3037-45A7-849A-8CFAB9DD70A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
