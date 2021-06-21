@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using test_ren.Models.Base;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using System;
+
 
 namespace test_ren.Models
 {
-    public class TimeSlot: BaseModel
+    public class TimeSlot
     {
+        public int Id { get; set; }
         public DateTime BeginTime { get; set; }
         public DateTime EndTime { get; set; }
         public int OfficeId { get; set; }

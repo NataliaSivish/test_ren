@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using test_ren.Database;
 using test_ren.Models;
-using test_ren.Repositories.Interfaces;
-using test_ren.Services.Interface;
+using test_ren.Repositories;
 
-namespace test_ren.Services.Implimentations
+namespace test_ren.Services
 {
-    public class RestService: IRestService
+    public class TimeSlotService
     {
-        private IBaseRepository<Office> Offices { get; set; }
-        private IBaseRepository<TimeSlot> TimeSlots { get; set; }
+        private TimeSlotRepository slotRepository;
+        private OfficeRepository officeRepository;
 
-        public void CreateSlots()  // Единождое создание слотов, на 10 дней
+        public void CreateSlots()  // Единождое создание слотов, на 10 для всех офисов
         {
             for (int i = 0; i < 10; i++)
             {
                 foreach (Office office in GetOffices())
                 {
-                    CreateTimeSlotForOffice(office, i+1);
+                    CreateTimeSlotForOffice(office, i + 1);
                 }
             }
 
@@ -34,16 +32,21 @@ namespace test_ren.Services.Implimentations
             }
         }
 
-        public List<Office> GetOffices() {
-            return Offices.GetAll().ToList();
+        public List<Office> GetOffices()
+        {
+            return officeRepository.GetAll().ToList();
         }
 
-        public List<TimeSlot> GetTimeSlotsForDate(int officeId, DateTime _date) {
+        public List<TimeSlot> GetTimeSlotsForDate(int officeId, DateTime _date)
+        {
             List<TimeSlot> result = new List<TimeSlot>();
-            foreach (TimeSlot slot in TimeSlots.GetAll()) {
-                if (slot.Id == officeId) {
+            foreach (TimeSlot slot in slotRepository.GetAll())
+            {
+                if (slot.Id == officeId)
+                {
                     var dateSlot = slot.BeginTime;
-                    if (dateSlot.Day == _date.Day && dateSlot.Year == _date.Year && dateSlot.Month == _date.Month) {
+                    if (dateSlot.Day == _date.Day && dateSlot.Year == _date.Year && dateSlot.Month == _date.Month)
+                    {
                         result.Add(slot);
                     }
                 }
@@ -53,20 +56,23 @@ namespace test_ren.Services.Implimentations
 
         public void Booking(int timeSlotId)
         {
-            var slot = TimeSlots.Get(timeSlotId);
+            var slot = slotRepository.Get(timeSlotId);
             slot.IsBusy = 1;
-            TimeSlots.Update(slot);
+            slotRepository.Update(slot);
         }
 
-        private void CreateTimeSlotForOffice(Office _office, int addDays) {
-            var timeSlotId = TimeSlots.GetAll().Count + 1;
+        private void CreateTimeSlotForOffice(Office _office, int addDays)
+        {
+            var timeSlotId = slotRepository.GetAll().Count + 1;
             var date = DateTime.Now.AddDays(addDays);
             var countTimeSlot = (_office.EndTime - _office.BeginTime).Minutes / 30;
-            var _beginTime = new DateTime(date.Year, date.Month, date.Day, 
+            var _beginTime = new DateTime(date.Year, date.Month, date.Day,
                 _office.BeginTime.Hour, _office.BeginTime.Minute, _office.BeginTime.Second);
             var _endTime = _beginTime.AddMinutes(30);
-            for (int i = 0; i < countTimeSlot; i++){
-                TimeSlots.Create(new TimeSlot{
+            for (int i = 0; i < countTimeSlot; i++)
+            {
+                slotRepository.Create(new TimeSlot
+                {
                     Id = timeSlotId,
                     BeginTime = _beginTime,
                     EndTime = _endTime,
@@ -77,7 +83,5 @@ namespace test_ren.Services.Implimentations
                 _endTime = _beginTime.AddMinutes(30);
             }
         }
-
-
     }
 }

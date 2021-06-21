@@ -12,8 +12,13 @@ namespace test_ren.Database
         public DbSet<Office> Offices { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {
+        public ApplicationContext() {
             Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;");
         }
     }
 }

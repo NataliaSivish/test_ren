@@ -10,14 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using test_ren.Database;
-using test_ren.Models;
-using test_ren.Repositories.Implimentations;
-using test_ren.Repositories.Interfaces;
-using test_ren.Services.Implimentations;
-using test_ren.Services.Interface;
+
 
 
 namespace test_ren
@@ -34,12 +28,8 @@ namespace test_ren
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddMvc();
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
-            services.AddTransient<IRestService, RestService>();
-            services.AddTransient<IBaseRepository<Office>, BaseRepository<Office>>();
-            services.AddTransient<IBaseRepository<TimeSlot>, BaseRepository<TimeSlot>>(); 
+            services.AddDbContext<ApplicationContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
